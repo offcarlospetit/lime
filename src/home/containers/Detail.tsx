@@ -57,6 +57,20 @@ const Detail = (props: Props) => {
     updateTodo(todo);
   };
 
+  const addTodo = () => {
+    if (text.trim() === '') {
+      return;
+    }
+    const newTodo: Todo = {
+      title: text,
+      completed: false,
+    };
+    todoList.push(newTodo);
+    todo.todos = todoList;
+    updateTodo(todo);
+    setText('');
+  };
+
   const renderRightActions = (
     dragX: Animated.AnimatedInterpolation,
     index: number,
@@ -113,21 +127,6 @@ const Detail = (props: Props) => {
         </View>
       </Swipeable>
     );
-  };
-
-  const addTodo = () => {
-    if (text.trim() === '') {
-      return;
-    }
-    const newTodo: Todo = {
-      title: text,
-      completed: false,
-    };
-    todoList.push(newTodo);
-    todo.todos = todoList;
-    updateTodo(todo);
-    setText('');
-    Keyboard.dismiss();
   };
 
   return (
